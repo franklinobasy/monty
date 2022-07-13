@@ -40,15 +40,16 @@ void _push(stack_t **stack, unsigned int line_number)
  * _pall - prints all element in a stack
  *
  * @stack: head of stack
- * @n: a value
+ * @line_number: a value
  *
  * Return: void
  */
-void _pall(stack_t **stack, unsigned int n)
+void _pall(stack_t **stack, unsigned int line_number)
 {
         stack_t *current = (stack_t *)malloc(sizeof(stack_t));
 
-         if (!current)
+        (void)line_number;
+        if (!current)
         {
                 dprintf(STDERR_FILENO, "Error: malloc operation failed :(.\n");
                 exit(EXIT_FAILURE);

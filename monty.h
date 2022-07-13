@@ -55,6 +55,6 @@ void get_op(stack_t **stack, char *op, unsigned int line_number);
 
 /* operations- SET A */
 void _push(stack_t **stack, unsigned int line_number);
-void _pall(stack_t **stack, unsigned int n);
+void _pall(stack_t **stack, unsigned int line_number);
 
 #endif /* MONTY_H_ */
