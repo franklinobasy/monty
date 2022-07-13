@@ -1,35 +1,41 @@
 #include "monty.h"
 
 /**
- * get_op - check op against accepted opcodes
- * @stack: double pointer to the beginnig of the stack
- * @op: op to check
- * @line_number: script line number
- *
- * Return: void
+ * get_opc - function to handle the opcode
+ * @stack: is a stack or queue
+ * @arg: is a parameter
+ * @item: is a parameter
+ * @count: is a line command
+ * Return: nothing
  */
-
-void get_op(stack_t **stack, char *op, unsigned int line_number)
+int get_opc(stack_t **stack, char *arg, char *item, int count)
 {
-        size_t idx;
-        instruction_t opcodes[] = {
-                {"push", _push},
-                {"pall", _pall},
-                {NULL, NULL}
-        };
+	int i = 0;
 
-        while (opcodes[idx].opcode != NULL)
-        {
-                if (strcmp(opcodes[idx].opcode, op) == 0)
-                {
-                        opcodes[idx].f(stack, line_number);
-                        return;
-                }
-                idx++;
-        }
+	instruction_t op[] = {
+		{"push", _push},
+		{"pall", _pall},
+		{NULL, NULL}
+	};
 
-        dprintf(STDOUT_FILENO,
-		"L%u: unknown instruction %s\n",
-		line_number, op);
-	exit(EXIT_FAILURE);
+	while (op[i].opcode)
+	{
+		if (!strcmp(arg, op[i].opcode))
+		{
+			if (!strcmp(arg, "push"))
+			{
+				if (_isdigit(item) == 1)
+					value = atoi(item);
+				else
+					return (1);
+			}
+			op[i].f(stack, (unsigned int)count);
+			break;
+		}
+		i++;
+	}
+	if (!op[i].opcode)
+		return (2);
+
+	return (0);
 }

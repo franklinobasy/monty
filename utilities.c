@@ -13,7 +13,7 @@ stack_t *NewNode(int value)
         stack_t *new_node = NULL;
 
         new_node = (stack_t *)malloc(sizeof(stack_t));
-        if (!new_node)
+        if (new_node == NULL)
         {
                 dprintf(STDERR_FILENO, "Error: malloc operation failed :(.\n");
                 exit(EXIT_FAILURE);
@@ -36,27 +36,31 @@ stack_t *NewNode(int value)
 
 int isEmpty(stack_t **stack)
 {
-        if (!(*stack))
+        if (*stack == NULL)
                 return (1);
         return (0);
 }
 
 /**
- * check_for_digit - checks that a string only contains digits
- * @arg: char to check
- *
- * Return: 0 if only digits, else 1
- */
-int check_for_digit(char *arg)
+ * _isdigit - Checks for a digit 0 through 9
+ * Return: 0 or 1
+ * @c: Variable
+ **/
+int _isdigit(char *c)
 {
-	int i;
+	char *aux = c;
 
-	for (i = 0; arg[i]; i++)
+	if (c == NULL)
+		return (0);
+	if (*aux == '-')
+		aux++;
+
+	for (; *aux != '\0'; aux++)
 	{
-		if (arg[i] == '-' && i == 0)
-			continue;
-		if (isdigit(arg[i]) == 0)
-			return (1);
+		if ((*aux < '0' || *aux > '9'))
+		{
+			return (0);
+		}
 	}
-	return (0);
+	return (1);
 }

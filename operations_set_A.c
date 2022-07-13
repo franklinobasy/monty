@@ -1,6 +1,8 @@
 #include "monty.h"
 
 stack_t *stack_top = NULL;
+int value;
+
 /**
  * _push - inserts a node to a top of stack
  *
@@ -11,17 +13,8 @@ stack_t *stack_top = NULL;
 void _push(stack_t **stack, unsigned int line_number)
 {
         stack_t *new_node = NULL;
-        char *arg;
-        int n;
 
-        arg = strtok(NULL, "\t\n\r ");
-        if (arg == NULL || check_for_digit(arg))
-        {
-                dprintf(STDOUT_FILENO, "L%u: usage: push integer\n", line_number);
-                exit(EXIT_FAILURE);
-        }
-        n = atoi(arg);
-        new_node = NewNode(n);
+        new_node = NewNode(value);
 
         if (isEmpty(stack) == 1)
         {

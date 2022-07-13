@@ -7,24 +7,16 @@
  *
  * Return: void
  */
-void free_stack(int status, void *arg)
+void free_stack(stack_t *stack)
 {
-	stack_t **stack;
-	stack_t *next;
+	stack_t *current = NULL;
 
-	(void)status;
+	current = stack;
 
-	stack = (stack_t **)arg;
-	if (*stack)
+	if (current != NULL)
 	{
-		(*stack)->prev->next = NULL;
-		(*stack)->prev = NULL;
-	}
-	while (*stack != NULL)
-	{
-		next = (*stack)->next;
-		free(*stack);
-		*stack = next;
+		free_stack(current->next);
+		free(current);
 	}
 }
 
@@ -35,11 +27,10 @@ void free_stack(int status, void *arg)
  *
  * Return: void
  */
-void fs_close(int status, void *arg)
+void fs_close(void *arg)
 {
 	FILE *fs;
 
-	(void)status;
 
 	fs = (FILE *) arg;
 	fclose(fs);
@@ -52,11 +43,10 @@ void fs_close(int status, void *arg)
  *
  * Return: void
  */
-void free_lineptr(int status, void *arg)
+void free_lineptr(void *arg)
 {
 	char **lineptr = arg;
 
-	(void)status;
 	if (*lineptr != NULL)
 		free(*lineptr);
 }

@@ -1,45 +1,63 @@
 #include "monty.h"
 
+glob_t global = {NULL, NULL};
 /**
- * main - Start interpreter
- *
- * @argc: args counter
- * @argv: args variable
- *
- * Return: int
+ * main - Entry point
+ * @argc: Number of arguments
+ * @argv: Arguments
+ * Return: number of arguments.
  */
-
 int main(int argc, char *argv[])
 {
-        stack_t *stack = NULL;
-        unsigned int line_number = 0;
-        FILE *fs = NULL;
-        char *lineptr = NULL, *op = NULL;
-        size_t n = 0;
-
-        if (argc != 2)
-        {
-                dprintf(STDOUT_FILENO, "USAGE: monty file\n");
+	if (argc == 2)
+		handle_command(argv[1]);
+	else
+	{
+		dprintf(STDERR_FILENO, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-        fs = fopen(argv[1], "r");
-        if (!fs)
-        {
-                dprintf(STDOUT_FILENO, "Error: Can't open file %s\n", argv[1]);
-		exit(EXIT_FAILURE);
-        }
-        on_exit(free_lineptr, &lineptr);
-        on_exit(free_stack, &stack);
-        on_exit(fs_close, fs);
+	return (0);
+}
+/**
+ * handle_command - Read file
+ * @argv: Arguments
+ * Return: Nothing
+ */
+void handle_command(char *argv)
+{
+	int count = 0, result = 0;
+	size_t bufsize = 0;
+	char *arguments = NULL, *item = NULL;
+	stack_t *stack = NULL;
 
-        while (getline(&lineptr, &n, fs) != -1)
-        {
-                line_number++;
-                op = strtok(lineptr, "\n\t\r ");
-                if (op != NULL && op[0] != '#')
-                {
-                        get_op(&stack, op, line_number);
-                }
-        }
-        exit(EXIT_SUCCESS);
+	global.fd = fopen(argv, "r");
+	if (global.fd)
+	{
+		while (getline(&global.line, &bufsize, global.fd) != -1)
+		{
+			count++;
+			arguments = strtok(global.line, " \n\t\r");
+			if (arguments == NULL)
+			{
+				free(arguments);
+				continue;
+			}
+			else if (*arguments == '#')
+				continue;
+			item = strtok(NULL, " \n\t\r");
+			result = get_opc(&stack, arguments, item, count);
+			if (result == 1)
+				push_error(global.fd, global.line, stack, count);
+			else if (result == 2)
+				ins_error(global.fd, global.line, stack, arguments, count);
+		}
+		free(global.line);
+		free_stack(stack);
+		fclose(global.fd);
+	}
+	else
+	{
+		dprintf(STDERR_FILENO, "Error: Can't open file %s\n", argv);
+		exit(EXIT_FAILURE);
+	}
 }

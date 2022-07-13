@@ -38,8 +38,23 @@ typedef struct instruction_s
 } instruction_t;
 
 
+/**
+ * struct glob_s - global and its funcs
+ * @fd: File descriptor
+ * @line: Line to getline
+ *
+ * Description: To handle the file and getline
+ */
+typedef struct glob_s
+{
+	FILE *fd;
+	char *line;
+} glob_t;
+
 /* globals */
 extern stack_t *stack_top;
+extern glob_t global;
+extern int value;
 
 /* utilities */
 
@@ -49,18 +64,25 @@ stack_t *NewNode(int value);
 /* check if stack is empty */
 int isEmpty(stack_t **stack);
 
-int check_for_digit(char *arg);
+int _isdigit(char *arg);
 
 /* get_opcode.c */
-void get_op(stack_t **stack, char *op, unsigned int line_number);
+int get_opc(stack_t **stack, char *arg, char *item, int count);
 
 /* operations- SET A */
 void _push(stack_t **stack, unsigned int line_number);
 void _pall(stack_t **stack, unsigned int line_number);
 
 /* cleaup functions */
-void free_stack(int status, void *arg);
-void fs_close(int status, void *arg);
-void free_lineptr(int status, void *arg);
+void free_stack(stack_t *stack);
+void fs_close(void *arg);
+void free_lineptr(void *arg);
+
+/* monty.c */
+void handle_command(char *argv);
+
+/* error handler */
+void push_error(FILE *fd, char *line, stack_t *stack, int count);
+void ins_error(FILE *fd, char *line, stack_t *stack, char *count, int item);
 
 #endif /* MONTY_H_ */
