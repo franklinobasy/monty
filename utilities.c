@@ -43,7 +43,7 @@ int isEmpty(stack_t **stack)
 
 /**
  * check_for_digit - checks that a string only contains digits
- * @arg: string to check
+ * @arg: char to check
  *
  * Return: 0 if only digits, else 1
  */

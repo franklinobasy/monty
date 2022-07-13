@@ -37,7 +37,6 @@ typedef struct instruction_s
 
 
 /* globals */
-extern int value;
 extern stack_t *stack_top;
 
 /* utilities */
@@ -56,5 +55,10 @@ void get_op(stack_t **stack, char *op, unsigned int line_number);
 /* operations- SET A */
 void _push(stack_t **stack, unsigned int line_number);
 void _pall(stack_t **stack, unsigned int line_number);
+
+/* cleaup functions */
+void free_stack(int status, void *arg);
+void fs_close(int status, void *arg);
+void free_lineptr(int status, void *arg);
 
 #endif /* MONTY_H_ */
