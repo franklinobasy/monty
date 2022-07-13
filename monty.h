@@ -35,13 +35,26 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+
+/* globals */
+extern int value;
+extern stack_t *stack_top;
+
+/* utilities */
+
 /* create new node */
 stack_t *NewNode(int value);
 
 /* check if stack is empty */
 int isEmpty(stack_t **stack);
 
+static int check_for_digit(char *arg);
+
+/* get_opcode.c */
+void get_op(stack_t **stack, char *op, unsigned int line_number);
+
 /* operations- SET A */
-void _push(stack_t **stack, unsigned int value_in_line);
+void _push(stack_t **stack, unsigned int line_number);
+void _pall(stack_t **stack, unsigned int n);
 
 #endif /* MONTY_H_ */
