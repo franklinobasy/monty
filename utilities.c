@@ -47,7 +47,7 @@ int isEmpty(stack_t **stack)
  *
  * Return: 0 if only digits, else 1
  */
-static int check_for_digit(char *arg)
+int check_for_digit(char *arg)
 {
 	int i;
 

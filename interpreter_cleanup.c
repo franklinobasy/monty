@@ -9,15 +9,22 @@
  */
 void free_stack(int status, void *arg)
 {
-	stack_t *current = NULL;
+	stack_t **stack;
+	stack_t *next;
 
-        (void)status;
-        current = (stack_t *)arg;
+	(void)status;
 
-        if (current != NULL)
+	stack = (stack_t **)arg;
+	if (*stack)
 	{
-		free_dlistint(current->next);
-		free(current);
+		(*stack)->prev->next = NULL;
+		(*stack)->prev = NULL;
+	}
+	while (*stack != NULL)
+	{
+		next = (*stack)->next;
+		free(*stack);
+		*stack = next;
 	}
 }
 
@@ -36,4 +43,20 @@ void fs_close(int status, void *arg)
 
 	fs = (FILE *) arg;
 	fclose(fs);
+}
+
+/**
+ * free_lineptr - free line pointer returned by getline
+ * @status: exit status
+ * @arg: pointer to line
+ *
+ * Return: void
+ */
+void free_lineptr(int status, void *arg)
+{
+	char **lineptr = arg;
+
+	(void)status;
+	if (*lineptr != NULL)
+		free(*lineptr);
 }

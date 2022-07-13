@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -47,7 +49,7 @@ stack_t *NewNode(int value);
 /* check if stack is empty */
 int isEmpty(stack_t **stack);
 
-static int check_for_digit(char *arg);
+int check_for_digit(char *arg);
 
 /* get_opcode.c */
 void get_op(stack_t **stack, char *op, unsigned int line_number);

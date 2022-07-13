@@ -1,5 +1,6 @@
 #include "monty.h"
 
+stack_t *stack_top = NULL;
 /**
  * _push - inserts a node to a top of stack
  *
@@ -20,7 +21,7 @@ void _push(stack_t **stack, unsigned int line_number)
                 exit(EXIT_FAILURE);
         }
         n = atoi(arg);
-        new_node = NewNode(arg);
+        new_node = NewNode(n);
 
         if (isEmpty(stack) == 1)
         {
