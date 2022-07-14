@@ -25,11 +25,11 @@ void push_failure(FILE *fd, char *line, stack_t *stack, int count)
  * @line: is a buffer
  * @stack: is a stack or queue
  * @count: is a line command
- * @item: number
+ * @arg: command entered
  */
-void no_command(FILE *fd, char *line, stack_t *stack, char *count, int item)
+void no_command(FILE *fd, char *line, stack_t *stack, char *arg, int count)
 {
-	fprintf(stderr, "L%u: unknown instruction %s\n", count, item);
+	fprintf(stderr, "L%u: unknown instruction %s\n", count, arg);
 	fclose(fd);
 	free(line);
 	free_stack(stack);
