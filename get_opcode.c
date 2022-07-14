@@ -16,6 +16,7 @@ int get_opc(stack_t **stack, char *arg, char *item, int count)
 	instruction_t opcodes[] = {
 		{"push", _push},
 		{"pall", _pall},
+		{"pint", _pint},
 		{NULL, NULL}
 	};
 
