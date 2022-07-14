@@ -12,7 +12,7 @@
  */
 void push_failure(FILE *fd, char *line, stack_t *stack, int count)
 {
-	dprintf(STDERR_FILENO, "L%u: usage: push integer\n", count);
+	printf("L%u: usage: push integer\n", count);
 	fclose(fd);
 	free(line);
 	free_stack(stack);
@@ -29,7 +29,7 @@ void push_failure(FILE *fd, char *line, stack_t *stack, int count)
  */
 void no_command(FILE *fd, char *line, stack_t *stack, char *count, int item)
 {
-	dprintf(STDERR_FILENO, "L%u: unknown instruction %s\n", item, count);
+	printf("L%u: unknown instruction %s\n", item, count);
 	fclose(fd);
 	free(line);
 	free_stack(stack);

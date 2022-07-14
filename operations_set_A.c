@@ -13,6 +13,7 @@ void _push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new_node = NULL;
 
+	(void)line_number;
 	new_node = NewNode(value);
 
 	new_node->next = *stack;
@@ -36,14 +37,14 @@ void _pall(stack_t **stack, unsigned int line_number)
 	(void)line_number;
 	if (!current)
 	{
-		dprintf(STDERR_FILENO, "Error: malloc operation failed :(.\n");
+		printf("Error: malloc operation failed :(.\n");
 		exit(EXIT_FAILURE);
 	}
 
 	current = *stack;
 	while (current != NULL)
 	{
-		dprintf(STDOUT_FILENO, "%d\n", current->n);
+		printf("%d\n", current->n);
 		current = current->next;
 	}
 }
