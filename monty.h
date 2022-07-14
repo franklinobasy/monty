@@ -75,14 +75,13 @@ void _pall(stack_t **stack, unsigned int line_number);
 
 /* cleaup functions */
 void free_stack(stack_t *stack);
-void fs_close(void *arg);
 void free_lineptr(void *arg);
 
 /* monty.c */
 void handle_command(char *argv);
 
 /* error handler */
-void push_error(FILE *fd, char *line, stack_t *stack, int count);
-void ins_error(FILE *fd, char *line, stack_t *stack, char *count, int item);
+void push_failure(FILE *fd, char *line, stack_t *stack, int count);
+void unknown_command(FILE *fd, char *line, stack_t *stack, char *count, int item);
 
 #endif /* MONTY_H_ */

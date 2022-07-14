@@ -47,9 +47,9 @@ void handle_command(char *argv)
 			item = strtok(NULL, " \n\t\r");
 			result = get_opc(&stack, arguments, item, count);
 			if (result == 1)
-				push_error(global.fd, global.line, stack, count);
+				push_failure(global.fd, global.line, stack, count);
 			else if (result == 2)
-				ins_error(global.fd, global.line, stack, arguments, count);
+				unknown_command(global.fd, global.line, stack, arguments, count);
 		}
 		free(global.line);
 		free_stack(stack);
