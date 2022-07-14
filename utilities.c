@@ -15,7 +15,7 @@ stack_t *NewNode(int value)
         new_node = (stack_t *)malloc(sizeof(stack_t));
         if (new_node == NULL)
         {
-                printf("Error: malloc operation failed :(.\n");
+                fprintf(stderr, "Error: malloc operation failed :(.\n");
                 exit(EXIT_FAILURE);
         }
 
