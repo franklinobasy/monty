@@ -77,6 +77,7 @@ void _pop(stack_t **stack, unsigned int line_number);
 /* operations- SET B */
 void _swap(stack_t **stack, unsigned int line_number);
 void _add(stack_t **stack, unsigned int line_number);
+void _nop(stack_t **stack, unsigned int line_number);
 
 /* cleaup functions */
 void free_stack(stack_t *stack);
