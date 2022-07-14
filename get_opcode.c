@@ -1,40 +1,41 @@
 #include "monty.h"
 
 /**
- * get_opc - function to handle the opcode
+ * get_opc - function to handle the opcodes
  * @stack: is a stack or queue
- * @arg: is a parameter
- * @item: is a parameter
- * @count: is a line command
- * Return: nothing
+ * @arg: command to compare with available opcodes
+ * @item: value to push
+ * @count: line number
+ *
+ * Return: void
  */
 int get_opc(stack_t **stack, char *arg, char *item, int count)
 {
-	int i = 0;
+	size_t idx = 0;
 
-	instruction_t op[] = {
+	instruction_t opcodes[] = {
 		{"push", _push},
 		{"pall", _pall},
 		{NULL, NULL}
 	};
 
-	while (op[i].opcode)
+	while (opcodes[idx].opcode)
 	{
-		if (!strcmp(arg, op[i].opcode))
+		if (!strcmp(arg, opcodes[idx].opcode))
 		{
 			if (!strcmp(arg, "push"))
 			{
-				if (_isdigit(item) == 1)
+				if (isvalid_digit(item) == 1)
 					value = atoi(item);
 				else
 					return (1);
 			}
-			op[i].f(stack, (unsigned int)count);
+			opcodes[idx].f(stack, (unsigned int)count);
 			break;
 		}
-		i++;
+		idx++;
 	}
-	if (!op[i].opcode)
+	if (!opcodes[idx].opcode)
 		return (2);
 
 	return (0);
