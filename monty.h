@@ -64,7 +64,7 @@ stack_t *NewNode(int value);
 /* check if stack is empty */
 int isEmpty(stack_t **stack);
 
-int _isdigit(char *arg);
+int isvalid_digit(char *arg);
 
 /* get_opcode.c */
 int get_opc(stack_t **stack, char *arg, char *item, int count);

@@ -42,11 +42,11 @@ int isEmpty(stack_t **stack)
 }
 
 /**
- * _isdigit - Checks for a digit 0 through 9
+ * isvalid_digit - Checks for a digit 0 through 9
  * Return: 0 or 1
  * @c: Variable
  **/
-int _isdigit(char *c)
+int isvalid_digit(char *c)
 {
 	char *aux = c;
 
