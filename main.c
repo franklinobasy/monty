@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
 		handle_command(argv[1]);
 	else
 	{
-		fprintf(stderr, "USAGE: monty file\n");
+		dprintf(STDOUT_FILENO, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 	return (0);
@@ -57,7 +57,7 @@ void handle_command(char *argv)
 	}
 	else
 	{
-		fprintf(stderr, "Error: Can't open file %s\n", argv);
+		dprintf(STDOUT_FILENO, "Error: Can't open file %s\n", argv);
 		exit(EXIT_FAILURE);
 	}
 }

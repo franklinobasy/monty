@@ -37,14 +37,14 @@ void _pall(stack_t **stack, unsigned int line_number)
 	(void)line_number;
 	if (!current)
 	{
-		fprintf(stderr, "Error: malloc operation failed :(.\n");
+		dprintf(STDOUT_FILENO, "Error: malloc operation failed :(.\n");
 		exit(EXIT_FAILURE);
 	}
 
 	current = *stack;
 	while (current != NULL)
 	{
-		fprintf(stderr, "%d\n", current->n);
+		dprintf(STDOUT_FILENO, "%d\n", current->n);
 		current = current->next;
 	}
 }
