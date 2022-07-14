@@ -44,7 +44,27 @@ void _pall(stack_t **stack, unsigned int line_number)
 	current = *stack;
 	while (current != NULL)
 	{
-		fprintf(stderr, "%d\n", current->n);
+		dprintf(STDOUT_FILENO, "%d\n", current->n);
 		current = current->next;
 	}
+}
+
+/**
+ * _pint -  prints the value at the top of the stack, followed by a new line.
+ *
+ * @stack: stack
+ * @line_number: current line number
+ *
+ * Return: void
+ */
+
+void _pint(stack_t **stack, unsigned int line_number)
+{
+	if (!(*stack) || !stack)
+	{
+		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	else
+		printf("%d\n", (*stack)->n);
 }

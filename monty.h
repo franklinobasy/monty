@@ -71,6 +71,7 @@ int get_opc(stack_t **stack, char *arg, char *item, int count);
 /* operations- SET A */
 void _push(stack_t **stack, unsigned int line_number);
 void _pall(stack_t **stack, unsigned int line_number);
+void _pint(stack_t **stack, unsigned int line_number)
 
 /* cleaup functions */
 void free_stack(stack_t *stack);
