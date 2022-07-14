@@ -11,11 +11,11 @@ int value;
  */
 void _push(stack_t **stack, unsigned int line_number)
 {
-        stack_t *new_node = NULL;
+	stack_t *new_node = NULL;
 
-        new_node = NewNode(value);
+	new_node = NewNode(value);
 
-        new_node->next = *stack;
+	new_node->next = *stack;
 	if (*stack != NULL)
 		(*stack)->prev = new_node;
 	*stack = new_node;
@@ -31,19 +31,19 @@ void _push(stack_t **stack, unsigned int line_number)
  */
 void _pall(stack_t **stack, unsigned int line_number)
 {
-        stack_t *current = (stack_t *)malloc(sizeof(stack_t));
+	stack_t *current = (stack_t *)malloc(sizeof(stack_t));
 
-        (void)line_number;
-        if (!current)
-        {
-                dprintf(STDERR_FILENO, "Error: malloc operation failed :(.\n");
-                exit(EXIT_FAILURE);
-        }
+	(void)line_number;
+	if (!current)
+	{
+		dprintf(STDERR_FILENO, "Error: malloc operation failed :(.\n");
+		exit(EXIT_FAILURE);
+	}
 
-        current = *stack;
-        while (current != NULL)
-        {
-                dprintf(STDOUT_FILENO, "%d\n", current->n);
+	current = *stack;
+	while (current != NULL)
+	{
+		dprintf(STDOUT_FILENO, "%d\n", current->n);
 		current = current->next;
 	}
 }
