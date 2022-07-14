@@ -42,7 +42,7 @@ void handle_command(char *argv)
 				free(arguments);
 				continue;
 			}
-			else if (*arguments == '#')
+			else if (*arguments == '#' || *arguments == '-')
 				continue;
 			item = strtok(NULL, " \n\t\r");
 			result = get_opc(&stack, arguments, item, count);
