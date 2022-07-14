@@ -52,7 +52,6 @@ typedef struct glob_s
 } glob_t;
 
 /* globals */
-extern stack_t *stack_top;
 extern glob_t global;
 extern int value;
 
