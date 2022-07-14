@@ -49,7 +49,7 @@ void handle_command(char *argv)
 			if (result == 1)
 				push_failure(global.fd, global.line, stack, count);
 			else if (result == 2)
-				unknown_command(global.fd, global.line, stack, arguments, count);
+				no_command(global.fd, global.line, stack, arguments, count);
 		}
 		free(global.line);
 		free_stack(stack);

@@ -82,6 +82,6 @@ void handle_command(char *argv);
 
 /* error handler */
 void push_failure(FILE *fd, char *line, stack_t *stack, int count);
-void unknown_command(FILE *fd, char *line, stack_t *stack, char *count, int item);
+void no_command(FILE *fd, char *line, stack_t *stack, char *count, int item);
 
 #endif /* MONTY_H_ */
